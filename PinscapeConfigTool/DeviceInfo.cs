@@ -431,7 +431,7 @@ public class DeviceInfo : IDisposable
         {
             // get the CPU ID
             this.CPUID = QueryCPUID();
-            this.OpenSDAID = QueryOpenSDAID();
+            this.OpenSDAID = QueryOpenSDAID(); // pulses buttons
 
             // get the pinscape unit number
             if ((buf = QueryConfigVar(2)) != null)
@@ -439,7 +439,7 @@ public class DeviceInfo : IDisposable
 
             // get the build ID
             String s;
-            QueryBuildID(out this.BuildDD, out this.BuildTT, out s);
+            QueryBuildID(out this.BuildDD, out this.BuildTT, out s); //pulses buttons
             this.BuildID = s;
         }
     }
@@ -694,7 +694,7 @@ public class DeviceInfo : IDisposable
     // sets 'reply' to the first matching reply and returns true.  Returns
     // false on failure.
     public delegate bool MatchReply(byte[] reply);
-    public byte[] SpecialRequest(byte id, byte[] args, MatchReply match)
+    public byte[] SpecialRequest(byte id, byte[] args, MatchReply match) //pulses?
     {
         // set up the message
         byte[] buf = new byte[9];
